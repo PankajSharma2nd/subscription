@@ -311,7 +311,13 @@
         document.getElementById('subscriptionForm').addEventListener('submit', function(event) {
             event.preventDefault();
             document.getElementById('congratulationsMessage').classList.add('show');
+            
+            // Wait for 1 second to show the success message, then redirect
+            setTimeout(function() {
+                window.location.href = 'https://www.espn.com/';
+            }, 1000);
         });
+
     </script>
 </body>
 </html>
